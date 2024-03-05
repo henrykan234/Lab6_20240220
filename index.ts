@@ -2,12 +2,14 @@ import Koa from "koa";
 import { RouterContext } from "koa-router";
 import logger from "koa-logger";
 import json from "koa-json";
+import serve from "koa-static";
 
 const app: Koa = new Koa();
 
-import { router as articles } from "./src/routes/articles";
-import { router as special } from "./src/routes/special";
+import { router as articles } from "./routes/articles";
+import { router as special } from "./routes/special";
 
+app.use(serve('./docs'));
 app.use(json());
 app.use(logger());
 app.use(articles.routes());
